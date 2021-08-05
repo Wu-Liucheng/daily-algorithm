@@ -1,2 +1,13 @@
 # 项目排除路径
 /target/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.mvn
+
+### mac os .DS_Store ###
+.DS_Store
+*/.DS_Store
