@@ -27,24 +27,33 @@ F.length>=3；
 public class L491 {
 
     public static void main(String[] args) {
-        String s = "123456579";
-        System.out.println(genFib(new ArrayList<>(),s,0));
-
+        String s = "12345657910351614";
+        List<BigInteger> res = new ArrayList<>();
+        backtrack(s,res,0);
+        System.out.println(res);
     }
 
-    private static List<Integer> genFib(List<Integer> ret,String s,int index) {
-        if(true){
-
+    public static boolean backtrack(String digit,List<BigInteger> res,int index){
+        if(index == digit.length() && res.size() >= 3){
+            return true;
         }
-
-        return null;
-    }
-
-    private static boolean strAdd(String a, String b, String result) {
-        return new BigInteger(a).add(new BigInteger(b)).equals(new BigInteger(result));
-    }
-
-    private static boolean startWithZero(String a){
-        return a.startsWith("0") && a.length() > 1;
+        for(int i = index; i < digit.length(); i++){
+            if(digit.charAt(index) == '0' && i > index){
+                break;
+            }
+            BigInteger num = new BigInteger(digit.substring(index, i + 1));
+            int size = res.size();
+            if(size >= 2 && num.compareTo(res.get(size - 1).add(res.get(size - 2))) > 0){
+                break;
+            }
+            if(size <= 1 || num.compareTo(res.get(size - 1).add(res.get(size - 2))) == 0){
+                res.add(num);
+                if(backtrack(digit, res, i + 1)){
+                    return true;
+                }
+                res.remove(res.size() - 1);
+            }
+        }
+        return false;
     }
 }
