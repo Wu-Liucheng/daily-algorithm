@@ -19,10 +19,10 @@ public class L489 {
         int five = 0;
         int ten = 0;
 
-        for (int i = 0; i < bills.length; i++) {
-            if (bills[i] == 5) {
+        for (int bill : bills) {
+            if (bill == 5) {
                 five++;
-            } else if (bills[i] == 10) {
+            } else if (bill == 10) {
                 if (five == 0) {
                     return false;
                 } else {
